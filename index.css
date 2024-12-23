@@ -1,34 +1,50 @@
 :root {
-  --body-bg-color: #e5e5e5;
-  --todos-bg-color: #fff;
+  --body-bg-color: rgb(229, 229, 229);
+  --todos-bg-color: rgb(255, 255, 255);
   --input-border-color: rgba(33, 33, 33, 0.32);
   --input-placeholder-color: rgba(33, 33, 33, 0.6);
   --input-text-color: rgba(33, 33, 33, 0.87);
+  --checked-text-color: rgba(33, 33, 33, 0.32);
+  --btn-remove-bg: rgb(255, 255, 255);
+  --remove-icon-color: rgba(33, 33, 33, 0.32);
+  --todo-hover-bg-color: rgba(33, 33, 33, 0.08);
 }
 
 :root > .dark-theme {
-  --body-bg-color: #181824;
-  --todos-bg-color: #25273c;
+  --body-bg-color: rgb(24, 24, 36);
+  --todos-bg-color: rgb(37, 39, 60);
   --input-border-color: rgba(255, 255, 255, 0.32);
   --input-placeholder-color: rgba(255, 255, 255, 0.6);
   --input-text-color: rgba(255, 255, 255, 0.87);
+  --checked-text-color: rgba(255, 255, 255, 0.32);
+  --btn-remove-bg: rgba(255, 255, 255, 0.32);
+  --remove-icon-color: rgb(33, 33, 33);
+  --todo-hover-bg-color: rgba(255, 255, 255, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --body-bg-color: #181824;
-    --todos-bg-color: #25273c;
+    --body-bg-color: rgb(24, 24, 36);
+    --todos-bg-color: rgb(37, 39, 60);
     --input-border-color: rgba(255, 255, 255, 0.32);
     --input-placeholder-color: rgba(255, 255, 255, 0.6);
     --input-text-color: rgba(255, 255, 255, 0.87);
+    --checked-text-color: rgba(255, 255, 255, 0.32);
+    --btn-remove-bg: rgba(255, 255, 255, 0.32);
+    --remove-icon-color: rgb(33, 33, 33);
+    --todo-hover-bg-color: rgba(255, 255, 255, 0.08);
   }
 
   :root > .light-theme {
-    --body-bg-color: #e5e5e5;
-    --todos-bg-color: #fff;
+    --body-bg-color: rgb(229, 229, 229);
+    --todos-bg-color: rgb(255, 255, 255);
     --input-border-color: rgba(33, 33, 33, 0.32);
     --input-placeholder-color: rgba(33, 33, 33, 0.6);
     --input-text-color: rgba(33, 33, 33, 0.87);
+    --checked-text-color: rgba(33, 33, 33, 0.32);
+    --btn-remove-bg: rgb(255, 255, 255);
+    --remove-icon-color: rgba(33, 33, 33, 0.32);
+    --todo-hover-bg-color: rgba(33, 33, 33, 0.08);
   }
 }
 
@@ -139,7 +155,6 @@ body {
 .section-todos {
   margin-top: 1.6rem;
   background-color: var(--todos-bg-color);
-  min-height: 78vh;
   border-radius: 0.8rem;
 }
 
@@ -188,4 +203,79 @@ body {
 
 #input--todo:valid + .btn--add-todo {
   display: block;
+}
+
+.todos {
+  padding: 2.4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  height: 64.2vh;
+  overflow: auto;
+}
+
+.todo {
+  list-style: none;
+  border: solid 1px var(--input-border-color);
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+}
+
+.todo:hover {
+  background-color: var(--todo-hover-bg-color);
+}
+
+#todo__completed {
+  width: 16px;
+  height: 16px;
+  border: solid 1px var(--input-border-color);
+  background-color: var(--todos-bg-color);
+}
+
+#todo__completed:checked + .todo__text {
+  text-decoration: line-through;
+  color: var(--checked-text-color);
+}
+
+.todo__text {
+  color: var(--input-text-color);
+  font-size: 1.8rem;
+  letter-spacing: 0.05px;
+}
+
+.btn--remove-todo {
+  position: absolute;
+  right: 1.2rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--btn-remove-bg);
+  border-radius: 50%;
+  display: none;
+}
+
+.todo:hover .btn--remove-todo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.remove-icon path {
+  fill: var(--remove-icon-color);
+}
+
+.todos__count {
+  text-align: end;
+  font-size: 1.7rem;
+  font-weight: 300;
+  color: var(--input-text-color);
+  padding: 2.4rem 2rem;
 }
