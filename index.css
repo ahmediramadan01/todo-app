@@ -36,3 +36,10 @@ body {
   min-height: 100vh;
   background-color: var(--body-bg-color);
 }
+
+.background {
+  background-image: url(./background.png);
+  height: 29vh;
+  background-position: center;
+  background-size: cover;
+}
