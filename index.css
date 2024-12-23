@@ -1,21 +1,17 @@
 :root {
-  color-scheme: light dark;
-}
-
-body {
   --body-bg-color: #e5e5e5;
 }
 
-body.dark-theme {
+:root > .dark-theme {
   --body-bg-color: #181824;
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
+  :root {
     --body-bg-color: #181824;
   }
 
-  body.light-theme {
+  :root > .light-theme {
     --body-bg-color: #e5e5e5;
   }
 }
@@ -24,6 +20,7 @@ body.dark-theme {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: background-color 0.5s ease;
 }
 
 html {
@@ -35,6 +32,9 @@ body {
   font-family: "Kanit", serif;
   min-height: 100vh;
   background-color: var(--body-bg-color);
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .background {
@@ -42,4 +42,80 @@ body {
   height: 29vh;
   background-position: center;
   background-size: cover;
+}
+
+.main {
+  align-self: center;
+  max-width: 61.8rem;
+  width: 100%;
+  position: absolute;
+  top: 6.5vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heading-primary {
+  font-size: 4.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12px;
+  color: #fff;
+}
+
+.btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.btn--theme-toggle {
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+
+.theme-icon {
+  width: 4rem;
+  height: 4rem;
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  color: #fff;
+  transition: transform 1s ease-out;
+}
+
+.theme-icon--sun {
+  transform: scale(0);
+}
+
+.dark-theme .theme-icon--sun {
+  transform: scale(1) rotate(360deg);
+}
+
+.theme-icon--moon {
+  transform: scale(1);
+}
+
+.dark-theme .theme-icon--moon {
+  transform: scale(0) rotate(360deg);
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-icon--sun {
+    transform: scale(1);
+  }
+
+  .light-theme .theme-icon--sun {
+    transform: scale(0) rotate(360deg);
+  }
+
+  .theme-icon--moon {
+    transform: scale(0);
+  }
+
+  .light-theme .theme-icon--moon {
+    transform: scale(1) rotate(360deg);
+  }
 }
