@@ -32,6 +32,14 @@ btnThemeToggle.addEventListener("click", function () {
 
 const todosList = [];
 
+/* Todo Constructor Function */
+
+function Todo(id, text, completed = false) {
+  this.id = id;
+  this.text = text;
+  this.completed = completed;
+}
+
 /* Helper Functions */
 
 function getCompletedTodosCount() {
@@ -154,7 +162,7 @@ function renderTodosList() {
     todosList.forEach(
       (todoItem) =>
         (markup += `
-          <li class="todo" id="${todoItem.id}">
+          <li class="todo" data-id="${todoItem.id}">
             <input type="checkbox" id="todo__completed" ${todoItem.completed ? "checked" : ""}/>
             <p class="todo__text">${todoItem.text}</p>
             <button class="btn btn--remove-todo">
