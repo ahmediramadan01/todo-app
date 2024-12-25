@@ -33,7 +33,7 @@ btnThemeToggle.addEventListener("click", function () {
 
 /* Todos List */
 
-const todosList = [];
+let todosList = [];
 
 /* Todo Constructor Function */
 
@@ -201,7 +201,17 @@ function renderTodosList() {
 
   todosContainer.insertAdjacentHTML("beforeend", markup);
 }
-renderTodosList();
+
+function setTodosToLocalStorage() {
+  localStorage.setItem("todos", JSON.stringify(todosList));
+}
+
+function getTodosFromLocalStorage() {
+  const localTodos = localStorage.getItem("todos");
+  if (localTodos) {
+    todosList = JSON.parse(localTodos).map((todo) => new Todo(todo.id, todo.text, todo.completed));
+  }
+}
 
 /* Callback functions */
 
@@ -213,6 +223,7 @@ function addTodo(event) {
     inputTodo.value = "";
   }
 
+  setTodosToLocalStorage();
   renderTodosList();
 }
 
@@ -223,6 +234,7 @@ function removeTodo(event) {
   const todo = todosList.find((todo) => todo.id === +todoItem.dataset.id);
   todosList.splice(todosList.indexOf(todo), 1);
 
+  setTodosToLocalStorage();
   renderTodosList();
 }
 
@@ -233,6 +245,7 @@ function toggleTodo(event) {
   const todoIndex = todosList.findIndex((todo) => todo.id === +todoItem.dataset.id);
   todosList[todoIndex].toggleCompleted();
 
+  setTodosToLocalStorage();
   renderTodosList();
 }
 
@@ -245,3 +258,8 @@ btnAddTodo.addEventListener("click", addTodo);
 todosContainer.addEventListener("click", removeTodo);
 
 todosContainer.addEventListener("change", toggleTodo);
+
+/* Initial states */
+
+getTodosFromLocalStorage();
+renderTodosList();
