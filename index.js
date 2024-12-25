@@ -4,6 +4,9 @@
 
 const btnThemeToggle = document.querySelector(".btn--theme-toggle");
 const todosContainer = document.querySelector(".todos-container");
+const formTodo = document.querySelector(".form--todo");
+const btnAddTodo = document.querySelector(".btn--add-todo");
+const inputTodo = document.querySelector("#input--todo");
 
 /* Theme toggle */
 
@@ -195,3 +198,22 @@ function renderTodosList() {
   todosContainer.insertAdjacentHTML("beforeend", markup);
 }
 renderTodosList();
+
+/* Callback functions */
+
+function addTodo(event) {
+  event.preventDefault();
+
+  if (inputTodo.value.length >= 1) {
+    todosList.unshift(new Todo(new Date().getTime(), inputTodo.value));
+    inputTodo.value = "";
+  }
+
+  renderTodosList();
+}
+
+/* Event handlers */
+
+formTodo.addEventListener("submit", addTodo);
+
+btnAddTodo.addEventListener("click", addTodo);
