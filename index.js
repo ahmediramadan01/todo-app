@@ -212,8 +212,20 @@ function addTodo(event) {
   renderTodosList();
 }
 
+function removeTodo(event) {
+  if (!event.target.closest(".btn--remove-todo")) return;
+
+  const todoItem = event.target.closest(".todo");
+  const todo = todosList.find((todo) => todo.id === +todoItem.dataset.id);
+  todosList.splice(todosList.indexOf(todo), 1);
+
+  renderTodosList();
+}
+
 /* Event handlers */
 
 formTodo.addEventListener("submit", addTodo);
 
 btnAddTodo.addEventListener("click", addTodo);
+
+todosContainer.addEventListener("click", removeTodo);
