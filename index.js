@@ -43,6 +43,10 @@ function Todo(id, text, completed = false) {
   this.completed = completed;
 }
 
+Todo.prototype.toggleCompleted = function () {
+  this.completed = !this.completed;
+};
+
 /* Helper Functions */
 
 function getCompletedTodosCount() {
@@ -222,6 +226,16 @@ function removeTodo(event) {
   renderTodosList();
 }
 
+function toggleTodo(event) {
+  if (!event.target.closest("#todo__completed")) return;
+
+  const todoItem = event.target.closest(".todo");
+  const todoIndex = todosList.findIndex((todo) => todo.id === +todoItem.dataset.id);
+  todosList[todoIndex].toggleCompleted();
+
+  renderTodosList();
+}
+
 /* Event handlers */
 
 formTodo.addEventListener("submit", addTodo);
@@ -229,3 +243,5 @@ formTodo.addEventListener("submit", addTodo);
 btnAddTodo.addEventListener("click", addTodo);
 
 todosContainer.addEventListener("click", removeTodo);
+
+todosContainer.addEventListener("change", toggleTodo);
