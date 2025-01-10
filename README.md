@@ -8,4 +8,5 @@
 - Theme based on default OS theme and users preference.
 - Todos' persistent storage and retrieval in and from local storage.
 
-![Todo List's Screenshot](./todo-list-screenshot.png?raw=true "Bookshelf Screenshot")
+![Todo List's Screenshot](./todo-list-screenshot.png?raw=true "Todo List Screenshot")
+Figma Design: [Calculator](https://app.bigdevsoon.me/projects/todo-app/browser "Calculator's Figma Design")
