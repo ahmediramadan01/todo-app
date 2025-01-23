@@ -9,4 +9,4 @@
 - Todos' persistent storage and retrieval in and from local storage.
 
 ![Todo List's Screenshot](./todo-list-screenshot.png?raw=true "Todo List Screenshot")
-Figma Design: [Todo List](https://app.bigdevsoon.me/projects/todo-app/browser "Calculator's Figma Design")
+Figma Design: [Todo List](https://app.bigdevsoon.me/projects/todo-app/browser "Todo List's Figma Design")
